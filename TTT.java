@@ -13,16 +13,30 @@ public class TTT {
         return board;
     }
 
+    public char getBoard(int row, int coloum){
+        return board[row][coloum];
+    }
+
     public char getCurrentPlayerchar(){
         return currentPlayerchar;
     }
 
-    
+    public void setCurrentPlayerchar(char currentPlayerchar) {
+        this.currentPlayerchar = currentPlayerchar;
+    }
+
+    public void setBoard(char[][] board) {
+        this.board = board;
+    }
+
+    public void setBoard(int row, int coloum, char mark) {
+        this.board[row][coloum] = mark;
+    }
 
     public void initializeBoard(){
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
-                board[i][j] = '-';
+                setBoard(i, j, '-');
             }
         }
     }
@@ -32,7 +46,7 @@ public class TTT {
         for (int i = 0; i < rows; i++) {
             System.out.println("| ");
             for (int j = 0; j < columns; j++) {
-                System.out.println(board[i][j] + " | ");  
+                System.out.println(getBoard(i, j) + " | ");  
             }
         }
     }
@@ -40,7 +54,7 @@ public class TTT {
     public boolean isBoardFull(){
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
-                if(board[i][j] == '-'){
+                if(getBoard(i, j) == '-'){
                     return false;
                 }
             }
@@ -54,7 +68,7 @@ public class TTT {
 
     private boolean checkRowsForWin(){
         for(int i = 0; i < rows; i++){
-            if(checkRowCol(board[0][i],board[1][i],board[2][i])){
+            if(checkRowCol(getBoard(0, i), getBoard(1, i), getBoard(2, i))){
                 return true;
             }
         }
@@ -63,7 +77,7 @@ public class TTT {
 
     private boolean checkColumnsForWin(){
         for(int i = 0; i < columns; i++){
-            if(checkRowCol(board[i][2],board[i][1],board[i][0])){
+            if(checkRowCol(getBoard(i, 2), getBoard(i, 1), getBoard(i, 0))){
                 return true;
             }
         }
@@ -71,7 +85,7 @@ public class TTT {
     }
 
     private boolean checkDiagonalsForWin(){
-        if(checkRowCol(board[0][2],board[1][1],board[2][0]) || checkRowCol(board[2][2],board[1][1],board[0][0])){
+        if(checkRowCol(getBoard(0, 2), getBoard(1, 1), getBoard(2, 0)) || checkRowCol(getBoard(2, 2), getBoard(1, 1), getBoard(0, 0))){
             return true;
         }
         return false;
@@ -80,6 +94,14 @@ public class TTT {
     private boolean checkRowCol(char m1, char m2, char m3){
         return m1 == m2 && m2 == m3;
     }
+
+    public void changePlayer(){
+        if(getCurrentPlayerchar() == 'x'){
+            setCurrentPlayerchar('o');
+        }else setCurrentPlayerchar('x');
+    }
+
+
 
 
 
