@@ -1,5 +1,7 @@
 public final class Launcher{
     public static void main(String[] args) {
-        //TODO
+        TTT game = new TTT();
+        game.initializeBoard();
+        game.printBoard();
     }
 }

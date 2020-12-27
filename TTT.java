@@ -42,13 +42,19 @@ public class TTT {
     }
 
     public void printBoard(){
-        System.out.println("-------------");
-        for (int i = 0; i < rows; i++) {
-            System.out.println("| ");
+        StringBuilder sboard = new StringBuilder();
+        sboard.append("-------------");
+        sboard.append(System.lineSeparator());
+        for (int i = 0; i < rows; i++){
+            sboard.append("| ");
             for (int j = 0; j < columns; j++) {
-                System.out.println(getBoard(i, j) + " | ");  
+                sboard.append(getBoard(i, j) + " | "); 
             }
+            sboard.append(System.lineSeparator());
+            sboard.append("-------------");
+            sboard.append(System.lineSeparator());
         }
+        SimpleIO.output(sboard.toString());
     }
 
     public boolean isBoardFull(){
@@ -90,6 +96,7 @@ public class TTT {
         }
         return false;
     }
+    
 
     private boolean checkRowCol(char m1, char m2, char m3){
         return m1 == m2 && m2 == m3;
@@ -101,12 +108,12 @@ public class TTT {
         }else setCurrentPlayerchar('x');
     }
 
-
-
-
-
-
-
-
+    public boolean placeMark(int row, int coloum){
+        if(getBoard(row, coloum) == '-'){
+            setBoard(row, coloum, getCurrentPlayerchar());
+            return true;
+        }
+        return false;
+    }
 
 }
