@@ -1,26 +1,56 @@
+import java.io.File;
+
 public class Player {
     String name;
     char mark;
+    int wins;
+    int losses;
+    int ties;
+    File playerFile;
 
     public Player(String name, char mark){
         this.name = name;
         this.mark = mark;
     }
 
-    public char getMark() {
+    public char getMark(){
         return mark;
     }
 
-    public String getName() {
+    public int getWins(){
+        return wins;
+    }
+
+    public int getLosses(){
+        return losses;
+    }
+
+    public int getTies(){
+        return ties;
+    }
+
+    public String getName(){
         return name;
     }
 
-    public void setMark(char mark) {
+    public void setMark(char mark){
         this.mark = mark;
     }
     
-    public void setName(String name) {
+    public void setName(String name){
         this.name = name;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setTies(int ties) {
+        this.ties = ties;
     }
 
     @Override

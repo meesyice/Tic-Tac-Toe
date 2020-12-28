@@ -2,10 +2,30 @@ import java.util.Scanner;
 
 public final class Launcher{
     public static void main(String[] args) {
+        mainMenu();
+    }
+
+    private static void mainMenu(){
+        Scanner in = new Scanner(System.in);
+        int input;
+        System.out.println("Tic-Tac-Toe");
+        System.out.println("1. New Game");
+        System.out.println("2. Leaderboard");
+        System.out.println("3. Exit");
+        input = in.nextInt();
+        switch(input){
+            case 1 -> newGame();
+            case 2 -> leaderboard();
+            case 3 -> System.exit(input);
+            default -> mainMenu();
+        }
+        in.close();
+    }
+
+    private static void newGame(){
         Scanner in = new Scanner(System.in);
         Player player1 = new Player("Player 1", 'X');
         Player player2 = new Player("Player 2", 'O');
-        System.out.println("Tic-Tac-Toe");
         System.out.print("Player 1 please Enter your name: ");
         player1.setName(in.nextLine());
         System.out.println("Hello " + player1.toString() + " you'll play as " + player1.getMark());
@@ -42,5 +62,9 @@ public final class Launcher{
         }
         System.out.println("Thnaks for Playing!");
         in.close();
+    }
+
+    public static void leaderboard(){
+        //TODO
     }
 }

@@ -10,12 +10,6 @@ public class Board {
         this.cells = new char[this.columns][this.rows];
     }
 
-    public Board(int rows, int columns){
-        this.rows = rows;
-        this.columns = columns;
-        this.cells = new char[this.columns][this.rows];
-    }
-
     public int getColumns() {
         return columns;
     }
@@ -128,5 +122,4 @@ public class Board {
     public boolean isCellempty(int col, int row){
         return getCell(col, row) == '-';
     }
-
 }
