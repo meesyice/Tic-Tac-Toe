@@ -1,8 +1,15 @@
+import java.io.File;
 import java.util.Scanner;
 
 public final class Launcher{
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        setupFiles(); 
         mainMenu();
+    }
+
+    private static void setupFiles(){
+        String path = System.getProperty("java.class.path");
+        new File(path + "/Players").mkdirs();
     }
 
     private static void mainMenu(){
