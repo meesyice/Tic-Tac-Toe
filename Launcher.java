@@ -2,14 +2,16 @@ import java.io.File;
 import java.util.Scanner;
 
 public final class Launcher{
+    static final String PATH = System.getProperty("java.class.path");
+    static String p1; 
+    static String p2;
     public static void main(String[] args){
         setupFiles(); 
         mainMenu();
     }
 
     private static void setupFiles(){
-        String path = System.getProperty("java.class.path");
-        new File(path + "/Players").mkdirs();
+        new File(PATH + "/Players").mkdirs();
     }
 
     private static void mainMenu(){
@@ -31,24 +33,23 @@ public final class Launcher{
 
     private static void newGame(){
         Scanner in = new Scanner(System.in);
-        Player player1 = new Player("Player 1", 'X');
-        Player player2 = new Player("Player 2", 'O');
         System.out.print("Player 1 please Enter your name: ");
-        player1.setName(in.nextLine());
-        System.out.println("Hello " + player1.toString() + " you'll play as " + player1.getMark());
+        p1 = in.nextLine();
+        Player player1 = new Player(p1, 'X');
         System.out.print("Player 2 please Enter your name: ");
-        player2.setName(in.nextLine());
-        System.out.println("Hello " + player2.toString() + " you'll play as " + player2.getMark());
-
+        p2 = in.nextLine();
+        Player player2 = new Player(p2, 'O');
+       
         Board game = new Board();
         game.initializeBoard();
         game.printBoard();
         game.setCurrentPlayer(player1);
-        int col, row;
+        int col; 
+        int row;
 
         while(!game.isBoardFull()){
             System.out.println("it's " + game.getCurrentPlayer().toString() + "'s Turn");
-            System.out.println("Enter your move (column[1-3] row[1-3]):");
+            System.out.println("Enter your move (column[0-2] row[0-2]):");
             col = in.nextInt();
             row = in.nextInt();
             if(game.isCellempty(col, row)){
