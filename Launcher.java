@@ -87,6 +87,9 @@ public final class Launcher{
     }
 
     public static void leaderboard(){
-        //TODO
+        File[] playerFiles = new File(PATH + "/Players").listFiles();
+        for (int i = 0; i < playerFiles.length; i++) {
+            System.out.println(playerFiles[i].getName());
+        }
     }
 }
