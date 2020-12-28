@@ -1,14 +1,18 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Player {
     private String name;
     private char mark;
-    private int wins;
-    private int losses;
-    private int ties;
+    private Integer wins;
+    private Integer losses;
+    private Integer ties;
     private Score score;
     private File playerFile;
+    private static String erorr = "An error occurred.";
 
     public Player(String name, char mark){
         this.name = name;
@@ -19,15 +23,15 @@ public class Player {
                 setWins(0);
                 setTies(0);
                 setLosses(0);
-                System.out.println("Hello " + getName() + " you'll play as " + getMark());
+                writetoFile();
+                System.out.println("Welcome " + getName() + " you'll play as " + getMark());
             }else{
-                setWins(0);
-                setTies(0);
-                setLosses(0);
+                readFromFile();
+                System.out.println(wins.toString() + ties.toString() + losses.toString());
                 System.out.println("Welcome back " + getName() + " you'll play as " + getMark());
             }
         }catch(IOException e){
-            System.out.println("An error occurred.");
+            System.out.println(erorr);
             e.printStackTrace();
         }
     }
@@ -99,8 +103,28 @@ public class Player {
         return super.hashCode();
     }
 
-    private static void createPlayerFile(){
-        //TODO
+    private void writetoFile(){
+        try(FileWriter playerFileWriter = new FileWriter(playerFile.getAbsolutePath())){
+            playerFileWriter.write(wins.toString());
+            playerFileWriter.write(System.lineSeparator());
+            playerFileWriter.write(ties.toString());
+            playerFileWriter.write(System.lineSeparator());
+            playerFileWriter.write(losses.toString());
+          }catch(IOException e){
+            System.out.println(erorr);
+            e.printStackTrace();
+        }
+    }
+
+    private void readFromFile(){
+        try(Scanner playerFileReader = new Scanner(playerFile)){
+            wins = Integer.parseInt(playerFileReader.nextLine());
+            ties = Integer.parseInt(playerFileReader.nextLine());
+            losses = Integer.parseInt(playerFileReader.nextLine());
+        }catch(FileNotFoundException e){
+            System.out.println(erorr);
+            e.printStackTrace();
+        }
     }
 
     public void editScore(Score score){
@@ -117,6 +141,7 @@ public class Player {
             default:
                 break;
         }
+        writetoFile();
     }
 
     private void addWin(){

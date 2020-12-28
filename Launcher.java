@@ -5,6 +5,7 @@ public final class Launcher{
     static final String PATH = System.getProperty("java.class.path");
     static String p1; 
     static String p2;
+    static boolean tie = true;
     public static void main(String[] args){
         setupFiles(); 
         mainMenu();
@@ -60,6 +61,14 @@ public final class Launcher{
             }
             if(game.checkForWin()){
                 game.printBoard();
+                if(game.getCurrentPlayer().equals(player1)){
+                    player1.editScore(Score.WIN);
+                    player2.editScore(Score.LOSS);
+                }else{
+                    player1.editScore(Score.LOSS);
+                    player2.editScore(Score.WIN);
+                }
+                tie = false;
                 System.out.println(game.getCurrentPlayer().toString() +" has won!");
                 break;
             }
@@ -67,6 +76,11 @@ public final class Launcher{
                 game.changePlayer(player2);
             }else game.changePlayer(player1);
             game.printBoard();
+        }
+        if(tie){
+            System.out.println("it's a Tie");
+            player1.editScore(Score.TIE);
+            player2.editScore(Score.TIE);
         }
         System.out.println("Thnaks for Playing!");
         in.close();
