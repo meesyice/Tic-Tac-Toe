@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Player {
+public class Player{
     private String name;
     private char mark;
     private Integer wins;
