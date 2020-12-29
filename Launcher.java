@@ -9,7 +9,7 @@ public final class Launcher{
     public static void main(String[] args){
         setupFiles(); 
         mainMenu();
-    }
+   }
 
     private static void setupFiles(){
         new File(PATH + "/Players").mkdirs();
@@ -45,7 +45,7 @@ public final class Launcher{
         game.initializeBoard();
         game.printBoard();
         game.setCurrentPlayer(player1);
-        int col; 
+        int col;
         int row;
 
         while(!game.isBoardFull()){
@@ -91,5 +91,6 @@ public final class Launcher{
         for (int i = 0; i < playerFiles.length; i++) {
             System.out.println(playerFiles[i].getName());
         }
+        mainMenu();
     }
 }

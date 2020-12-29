@@ -86,7 +86,7 @@ public class Player{
 
     @Override
     public String toString(){
-        return name;
+        return getName();
     }
 
     @Override
