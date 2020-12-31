@@ -20,12 +20,12 @@ public final class Launcher{
         int input;
         System.out.println("Tic-Tac-Toe");
         System.out.println("1. New Game");
-        System.out.println("2. Leaderboard");
+        System.out.println("2. Scoreboard");
         System.out.println("3. Exit");
         input = in.nextInt();
         switch(input){
             case 1 -> newGame();
-            case 2 -> leaderboard();
+            case 2 -> scoreboard();
             case 3 -> System.exit(input);
             default -> mainMenu();
         }
@@ -47,7 +47,7 @@ public final class Launcher{
         game.setCurrentPlayer(player1);
         int col;
         int row;
-
+        
         while(!game.isBoardFull()){
             System.out.println("it's " + game.getCurrentPlayer().toString() + "'s Turn");
             System.out.println("Enter your move (column[0-2] row[0-2]):");
@@ -86,7 +86,7 @@ public final class Launcher{
         in.close();
     }
 
-    public static void leaderboard(){
+    public static void scoreboard(){
         File[] playerFiles = new File(PATH + "/Players").listFiles();
         for (int i = 0; i < playerFiles.length; i++) {
             System.out.println(playerFiles[i].getName());

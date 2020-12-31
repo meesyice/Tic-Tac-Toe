@@ -14,26 +14,19 @@ public class Player{
     private File playerFile;
     private static String erorr = "An error occurred.";
 
+    protected Player(){
+        this.name = "";
+        this.mark = '-';
+        this.wins = 0;
+        this.ties = 0;
+        this.losses = 0;
+        this.playerFile = null;
+    }
+
     public Player(String name, char mark){
         this.name = name;
         this.mark = mark;
-        try{
-            playerFile = new File(Launcher.PATH + "/Players/" + toString() +".txt");
-            if(playerFile.createNewFile()){
-                setWins(0);
-                setTies(0);
-                setLosses(0);
-                writetoFile();
-                System.out.println("Welcome " + getName() + " you'll play as " + getMark());
-            }else{
-                readFromFile();
-                System.out.println(wins.toString() + ties.toString() + losses.toString());
-                System.out.println("Welcome back " + getName() + " you'll play as " + getMark());
-            }
-        }catch(IOException e){
-            System.out.println(erorr);
-            e.printStackTrace();
-        }
+        createPlayerFile();
     }
 
     public char getMark(){
@@ -101,6 +94,26 @@ public class Player{
     @Override
     public int hashCode(){
         return super.hashCode();
+    }
+
+    protected void createPlayerFile(){
+        try{
+            this.playerFile = new File(Launcher.PATH + "/Players/" + toString() +".txt");
+            if(playerFile.createNewFile()){
+                this.setWins(0);
+                this.setTies(0);
+                this.setLosses(0);
+                this.writetoFile();
+                System.out.println("Welcome " + getName() + " you'll play as " + getMark());
+            }else{
+                this.readFromFile();
+                System.out.println(wins.toString() + ties.toString() + losses.toString());
+                System.out.println("Welcome back " + getName() + " you'll play as " + getMark());
+            }
+        }catch(IOException e){
+            System.out.println(erorr);
+            e.printStackTrace();
+        }
     }
 
     private void writetoFile(){

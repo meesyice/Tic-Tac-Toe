@@ -103,7 +103,7 @@ public class Board {
     }
     
 
-    private boolean checkRowCol(char m1, char m2, char m3){
+    private static boolean checkRowCol(char m1, char m2, char m3){
         return (m1 == m2 && m1 == m3 && m2 == m3) && (m1 != '-' && m2 != '-' && m3 != '-');
     }
 
