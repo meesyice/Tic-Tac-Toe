@@ -30,7 +30,31 @@ public class Computer extends Player{
         return super.hashCode();
     }
 
-    public void playTurn(){
+    public void playTurn(Board gameBoard){
+        if(checkForLoss(gameBoard)){
+            preventLoss();
+            return;
+        }
+        if(checkForWin(gameBoard)){
+            winGame();
+            return;
+        }
+        
+    }
+
+    private boolean checkForLoss(Board gameBoard){
+        //TODO
+    }
+
+    private void preventLoss(){
+        //TODO
+    }
+
+    private boolean checkForWin(Board gameBoard){
+        //TODO
+    }
+
+    private boolean winGame(){
         //TODO
     }
 
